@@ -1,0 +1,27 @@
+.tabs {
+    width: 70%;
+    color: #eee;
+    border-radius: 5px;
+    display: flex;
+
+    padding: 5px;
+    padding-right: 0px;
+    background-color: #aaf2;
+}
+
+.tabs li {
+    width: 100%;
+    list-style: none;
+    text-align: center;
+    background-color: #aae2;
+    padding: 10px;
+    margin-right: 5px;
+
+    cursor: pointer;
+}
+.tabs li:hover {
+    list-style: none;
+    background-color: #aae5;
+    padding: 10px;
+    margin-right: 5px;
+}
