@@ -1,3 +1,23 @@
 <mat-toolbar [class.mat-elevation-z2]="true">
+    <div id="left"></div>
     <span>Pomodoro</span>
+    <div id="settings-area">
+        <button id="settings-button">
+            <mat-icon>settings</mat-icon>
+        </button>
+        <div class="account">
+            <button id="account-button">
+                <mat-icon>person</mat-icon>
+                <mat-icon>arrow_drop_down</mat-icon>
+            </button>
+            <div class="dropdown">
+                <ul>
+                    <li>Entrar...</li>
+                    <li>Sair</li>
+                    <li>Trocar Usuário...</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
 </mat-toolbar>

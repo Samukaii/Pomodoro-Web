@@ -1,0 +1,25 @@
+.base {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+}
+.button-play {
+    background-color: rgb(92, 92, 167);
+    border-radius: 100%;
+    width: 75px;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+mat-icon {
+    color: white;
+    font-size: 34pt;
+    width: 40px;
+    height: 40px;
+    padding: 0%;
+}

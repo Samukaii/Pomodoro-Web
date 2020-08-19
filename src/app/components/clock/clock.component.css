@@ -56,11 +56,12 @@
     height: 370px;
     border: #aaf5 solid 5px;
     animation: circle 1s linear;
+    animation-play-state: paused;
     z-index: 0;
 }
 
 .base .timer {
-    position: fixed;
+    position: absolute;
     z-index: 2;
     color: #eee;
     font-size: 25pt;

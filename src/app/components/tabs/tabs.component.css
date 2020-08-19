@@ -14,14 +14,34 @@
     list-style: none;
     text-align: center;
     background-color: #aae2;
-    padding: 10px;
+    padding: 0px;
     margin-right: 5px;
 
     cursor: pointer;
 }
-.tabs li:hover {
+
+.tabs li button {
+    width: 100%;
+    color: #eee;
+    list-style: none;
+    text-align: center;
+    background-color: #aae2;
+    padding: 10px;
+    margin-right: 5px;
+    border: #fff3 solid 2px;
+
+    cursor: pointer;
+    outline: none;
+}
+.tabs li button:hover {
     list-style: none;
     background-color: #aae5;
     padding: 10px;
     margin-right: 5px;
+}
+
+.active {
+    background-color: #aae !important;
+    color: #333 !important;
+    font-weight: bolder;
 }

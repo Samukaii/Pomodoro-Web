@@ -1,0 +1,65 @@
+<div class="base">
+    <ul id="tasks-base">
+        <li>
+            <button class="check-task" (click)="check($event, taskname)">
+                <mat-icon class="check-icon" checked="false">check_box_outline_blank</mat-icon>
+            </button>
+            <button class="select-task" (click)="select($event)">
+                <input type="text" value="Alguma tarefa" readonly #taskname />
+            </button>
+            <button class="edit-task" (click)="edit($event)">
+                <mat-icon>create</mat-icon>
+            </button>
+            <button class="delete-task" (click)="delete($event)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </li>
+        <li>
+            <button class="check-task" (click)="check($event, taskname)">
+                <mat-icon class="check-icon" checked="false">check_box_outline_blank</mat-icon>
+            </button>
+            <button class="select-task" (click)="select($event)">
+                <input type="text" value="Alguma tarefa" readonly #taskname />
+            </button>
+            <button class="edit-task" (click)="edit($event)">
+                <mat-icon>create</mat-icon>
+            </button>
+            <button class="delete-task" (click)="delete($event)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </li>
+        <li>
+            <button class="check-task" (click)="check($event)">
+                <mat-icon class="check-icon" checked="false">check_box_outline_blank</mat-icon>
+            </button>
+            <button class="select-task" (click)="select($event)">
+                <input type="text" value="Alguma tarefa" readonly />
+            </button>
+            <button class="edit-task" (click)="edit($event)">
+                <mat-icon>create</mat-icon>
+            </button>
+            <button class="delete-task" (click)="delete($event)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </li>
+
+        <li class="add-li">
+            <form id="add-form">
+                <input type="text" placeholder="Adicione uma tarefa..." />
+                <p class="label">
+                    Em quanto tempo você terminará?
+                </p>
+                <button>
+                    <mat-icon> keyboard_arrow_up</mat-icon>
+                </button>
+                <p class="pomodoro">5</p>
+                <button>
+                    <mat-icon> keyboard_arrow_down</mat-icon>
+                </button>
+            </form>
+            <button class="add-tasks" (click)="add()">
+                <mat-icon>add</mat-icon> Adicionar Nova Tarefa
+            </button>
+        </li>
+    </ul>
+</div>

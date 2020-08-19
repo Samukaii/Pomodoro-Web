@@ -1,5 +1,17 @@
-<ul class="tabs">
-    <li>Pomodoro</li>
-    <li>Short Break</li>
-    <li>Long Break</li>
+<ul id="tabs" class="tabs">
+    <li>
+        <button id="pomodoro" (click)="switchTab($event)">
+            Pomodoro
+        </button>
+    </li>
+    <li>
+        <button id="short-break" (click)="switchTab($event)">
+            Short Break
+        </button>
+    </li>
+    <li>
+        <button id="long-break" (click)="switchTab($event)">
+            Long Break
+        </button>
+    </li>
 </ul>
