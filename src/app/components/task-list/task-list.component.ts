@@ -7,6 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TaskListComponent implements OnInit {
     activeTask: HTMLLIElement;
+    pomodorosToFinish: number = 0;
 
     constructor() { }
 
@@ -26,6 +27,14 @@ export class TaskListComponent implements OnInit {
     };
 
     add = () => { };
+
+    addOrSubtractPomodoro = (event: any, amount: number) => {
+        event.preventDefault();
+        if (this.pomodorosToFinish <= 0)
+            amount < 0 ? amount = 0 : 1
+
+        this.pomodorosToFinish += amount;
+    }
 
     check = (event: any, taskname: HTMLInputElement) => {
         const target: HTMLElement = event.target;

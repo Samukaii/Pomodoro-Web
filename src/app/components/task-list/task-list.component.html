@@ -29,7 +29,7 @@
             </button>
         </li>
         <li>
-            <button class="check-task" (click)="check($event)">
+            <button class="check-task" (click)="check($event, taskname)">
                 <mat-icon class="check-icon" checked="false">check_box_outline_blank</mat-icon>
             </button>
             <button class="select-task" (click)="select($event)">
@@ -49,11 +49,11 @@
                 <p class="label">
                     Em quanto tempo você terminará?
                 </p>
-                <button>
+                <button (click)="addOrSubtractPomodoro($event,1)">
                     <mat-icon> keyboard_arrow_up</mat-icon>
                 </button>
-                <p class="pomodoro">5</p>
-                <button>
+                <p class="pomodoro">{{pomodorosToFinish}}</p>
+                <button (click)="addOrSubtractPomodoro($event,-1)">
                     <mat-icon> keyboard_arrow_down</mat-icon>
                 </button>
             </form>

@@ -121,18 +121,30 @@ button.edit-task:hover {
 #tasks-base li.add-li form p.label {
     display: flex;
     justify-content: center;
+    margin: 20px;
 }
 #tasks-base li.add-li form p.pomodoro {
     font-size: 10pt;
-    margin: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    text-align: center;
+    width: 30px;
 }
 #tasks-base li.add-li form button {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     font-size: 5pt;
     display: flex;
+    background-color: #aae4;
+    border: none;
+    outline: none;
+    color: white;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+}
+#tasks-base li.add-li form button:hover {
+    background-color: #aae7;
 }
 #tasks-base li.add-li form mat-icon {
     width: 20px;
@@ -142,9 +154,14 @@ button.edit-task:hover {
 #tasks-base li.add-li form input {
     outline: none;
     background-color: transparent;
+    text-align: center;
     color: #eee;
     border: none;
     padding: 5px;
+}
+#tasks-base li.add-li form input::placeholder {
+    color: #eeea;
+    text-align: center;
 }
 
 #tasks-base li.add-li {
