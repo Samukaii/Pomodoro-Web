@@ -1,0 +1,14 @@
+{
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "browserslist": true,
+        "**/polyfills.ts": true,
+        "**/main.ts": true,
+        "**/favicon.ico": true,
+        "**/app-routing.module.ts": true
+    }
+}

@@ -7,25 +7,38 @@ import { Component, OnInit } from "@angular/core";
 })
 export class TaskListComponent implements OnInit {
     activeTask: HTMLLIElement;
+    pomodorosToFinish: number = 0;
+    tasks: Array<{ nameTask: string, numberPomodoros: number }> = [];
 
     constructor() { }
 
     ngOnInit(): void { }
 
-    delete = (event: any) => {
-        const target: HTMLElement = event.target;
-        let task: HTMLElement;
-
-        if (target.nodeName === "BUTTON") {
-            task = target.parentElement;
-        } else {
-            task = target.parentElement.parentElement;
-        }
-
-        task.remove();
+    delete = (event: any, index: number) => {
+        event.preventDefault();
+        this.tasks.splice(index, 1);
     };
 
-    add = () => { };
+    add = (nameTaskRef: HTMLInputElement, numberPomodorosRef: HTMLParagraphElement) => {
+        const newTask = {
+            nameTask: "",
+            numberPomodoros: 0
+        }
+        newTask.nameTask = nameTaskRef.value;
+        newTask.numberPomodoros = parseInt(numberPomodorosRef.innerHTML);
+
+        if (newTask.nameTask.length < 1) return;
+        this.tasks.push(newTask);
+
+    };
+
+    addOrSubtractPomodoro = (event: any, amount: number) => {
+        event.preventDefault();
+        if (this.pomodorosToFinish <= 0)
+            amount < 0 ? amount = 0 : 1
+
+        this.pomodorosToFinish += amount;
+    }
 
     check = (event: any, taskname: HTMLInputElement) => {
         const target: HTMLElement = event.target;
@@ -48,28 +61,20 @@ export class TaskListComponent implements OnInit {
             checkIcon.innerText = "check_box";
             checkIcon.setAttribute("checked", "true");
             taskname.style.textDecoration = "line-through";
-            console.log(taskname)
         }
     };
 
-    edit = (event: any) => {
-        const target: HTMLElement = event.target;
-        let task: HTMLElement;
-
-        if (target.nodeName === "BUTTON") {
-            task = target.parentElement;
-        } else {
-            task = target.parentElement.parentElement;
+    edit = (taskInput: HTMLInputElement, taskIndex: number) => {
+        if (!taskInput.readOnly) {
+            this.tasks[taskIndex].nameTask = taskInput.value;
         }
-
-        let content = task.getElementsByClassName("select-task");
-        let input = content[0].querySelector("input");
-        input.readOnly = !input.readOnly;
+        taskInput.readOnly = !taskInput.readOnly;
     };
 
-    select = (event: any) => {
-        this.activeTask && this.activeTask.classList.remove("active");
-        this.activeTask = event.target.parentElement;
-        this.activeTask.classList.add("active");
+    select = (task: HTMLLIElement) => {
+        if (task.classList.contains("active")) return;
+        this.activeTask = task;
+        task.classList.add("active")
+        console.log(task)
     };
 }
