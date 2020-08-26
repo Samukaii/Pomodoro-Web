@@ -83,7 +83,7 @@ export class TaskListComponent implements OnInit {
     observeDesselectEvent = (element: HTMLLIElement) => {};
 
     desSelectAll = () => {
-        document.dispatchEvent(this.disableAllSelectTasks);
+        this.tasks.map(() => {});
     };
 
     desSelectTask = (task: HTMLLIElement) => {

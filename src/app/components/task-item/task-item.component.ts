@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
     styleUrls: ["./task-item.component.css"],
 })
 export class TaskItemComponent implements OnInit {
-    @Input("task-ref") taskRef: HTMLElement;
+    @Input("task-ref") taskRef: HTMLLIElement;
     @Input("task-object") taskObject: {
         nameTask: string;
         numberPomodoros: number;
@@ -14,7 +14,8 @@ export class TaskItemComponent implements OnInit {
     @Input("task-index") taskIndex: number;
 
     @Output("delete") deleteEvent = new EventEmitter<number>();
-    @Output("select") selectEvent = new EventEmitter<number>();
+    @Output("select") selectEvent = new EventEmitter<HTMLLIElement>();
+    @Output("desselect-all") desSelectAllEvent = new EventEmitter();
     @Output("edit") editEvent = new EventEmitter<{
         taskIndex: number;
         taskValue: string;
@@ -57,14 +58,13 @@ export class TaskItemComponent implements OnInit {
                 taskIndex: taskIndex,
                 taskValue: taskInput.value,
             });
-            this.tasks[taskIndex].nameTask = taskInput.value;
         }
         taskInput.readOnly = !taskInput.readOnly;
     };
 
     select = (task: HTMLLIElement) => {
         if (task.classList.contains("active")) return;
-        this.activeTask = task;
+        this.selectEvent.emit(task);
         this.desSelectAll();
         task.classList.add("active");
         console.log(task);
@@ -72,7 +72,9 @@ export class TaskItemComponent implements OnInit {
 
     observeDesselectEvent = (element: HTMLLIElement) => {};
 
-    desSelectAll = () => {};
+    desSelectAll = () => {
+        this.desSelectAllEvent.emit();
+    };
 
     desSelectTask = (task: HTMLLIElement) => {
         if (!task.classList.contains("active")) return;
