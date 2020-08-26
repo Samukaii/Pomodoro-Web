@@ -6,9 +6,14 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
     styleUrls: ["./task-list.component.css"],
 })
 export class TaskListComponent implements OnInit {
-    activeTask: HTMLLIElement;
+    activeTask: { nameTask: string; numberPomodoros: number; active: boolean };
     pomodorosToFinish: number = 0;
-    tasks: Array<{ nameTask: string; numberPomodoros: number }> = [];
+    tasks: Array<{
+        nameTask: string;
+        numberPomodoros: number;
+        active: boolean;
+    }> = [];
+    taskRefs: Array<any> = [];
     disableAllSelectTasks = new Event("desselectAllTasks");
 
     constructor() {}
@@ -31,6 +36,7 @@ export class TaskListComponent implements OnInit {
         const newTask = {
             nameTask: "",
             numberPomodoros: 0,
+            active: false,
         };
         newTask.nameTask = nameTaskRef.value;
         newTask.numberPomodoros = parseInt(numberPomodorosRef.innerHTML);
@@ -78,22 +84,15 @@ export class TaskListComponent implements OnInit {
         taskInput.readOnly = !taskInput.readOnly;
     };
 
-    select = (task: HTMLLIElement) => {
-        if (task.classList.contains("active")) return;
-        this.activeTask = task;
+    select = (index: number) => {
         this.desSelectAll();
-        task.classList.add("active");
-        console.log(task);
+        this.tasks[index].active = true;
+        this.activeTask = this.tasks[index];
     };
-
-    observeDesselectEvent = (element: HTMLLIElement) => {};
 
     desSelectAll = () => {
-        document.dispatchEvent(this.disableAllSelectTasks);
-    };
-
-    desSelectTask = (task: HTMLLIElement) => {
-        if (!task.classList.contains("active")) return;
-        task.classList.remove("active");
+        this.tasks.map((task) => {
+            task.active = false;
+        });
     };
 }
