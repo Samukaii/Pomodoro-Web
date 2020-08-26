@@ -9,6 +9,10 @@
         "**/polyfills.ts": true,
         "**/main.ts": true,
         "**/favicon.ico": true,
-        "**/app-routing.module.ts": true
-    }
+        "**/app-routing.module.ts": true,
+        ".gitignore": true
+    },
+    "prettier.tabWidth": 4,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Omni"
 }

@@ -13,8 +13,8 @@ import { TabsComponent } from "./components/tabs/tabs.component";
 import { ButtonPlayComponent } from "./components/button-play/button-play.component";
 import { MatIconModule, MatIcon } from "@angular/material/icon";
 import { TaskListComponent } from "./components/task-list/task-list.component";
-import { SettingsComponent } from './components/settings/settings.component';
-import { ModalComponent } from './components/modal/modal.component';
+import { SettingsComponent } from "./components/settings/settings.component";
+import { ModalComponent } from "./components/modal/modal.component";
 
 @NgModule({
     declarations: [
@@ -26,16 +26,16 @@ import { ModalComponent } from './components/modal/modal.component';
         ButtonPlayComponent,
         TaskListComponent,
         SettingsComponent,
-        ModalComponent
+        ModalComponent,
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         MatToolbarModule,
-        MatIconModule
+        MatIconModule,
     ],
     providers: [],
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -2,11 +2,24 @@
     <ul id="tasks-base">
         <li *ngFor="let task of tasks; index as i; first as isFirst" #taskLine>
             <button class="check-task" (click)="check($event, taskInput)">
-                <mat-icon class="check-icon" checked="false">check_box_outline_blank</mat-icon>
+                <mat-icon class="check-icon" checked="false"
+                    >check_box_outline_blank</mat-icon
+                >
             </button>
             <button class="select-task" (click)="select(taskLine)">
-                <input type="text" value="{{task.nameTask}}" readonly #taskInput />
+                <input
+                    type="text"
+                    value="{{ task.nameTask }}"
+                    readonly
+                    #taskInput
+                />
             </button>
+            <div *ngIf="task.numberPomodoros !== 0" id="pomodoros-to-task">
+                <p>
+                    {{ task.numberPomodoros }}
+                </p>
+                <mat-icon>timer</mat-icon>
+            </div>
             <button class="edit-task" (click)="edit(taskInput, i)">
                 <mat-icon>create</mat-icon>
             </button>
@@ -17,19 +30,28 @@
 
         <li class="add-li">
             <form id="add-form">
-                <input type="text" placeholder="Adicione uma tarefa..." #taskNameToAdd />
+                <input
+                    type="text"
+                    placeholder="Adicione uma tarefa..."
+                    #taskNameToAdd
+                />
                 <p class="label">
                     Em quanto tempo você terminará?
                 </p>
-                <button (click)="addOrSubtractPomodoro($event,1)">
+                <button (click)="addOrSubtractPomodoro($event, 1)">
                     <mat-icon> keyboard_arrow_up</mat-icon>
                 </button>
-                <p class="pomodoro" #numberPomodorosToAdd>{{pomodorosToFinish}}</p>
-                <button (click)="addOrSubtractPomodoro($event,-1)">
+                <p class="pomodoro" #numberPomodorosToAdd>
+                    {{ pomodorosToFinish }}
+                </p>
+                <button (click)="addOrSubtractPomodoro($event, -1)">
                     <mat-icon> keyboard_arrow_down</mat-icon>
                 </button>
             </form>
-            <button class="add-tasks" (click)="add(taskNameToAdd, numberPomodorosToAdd)">
+            <button
+                class="add-tasks"
+                (click)="add(taskNameToAdd, numberPomodorosToAdd)"
+            >
                 <mat-icon>add</mat-icon> Adicionar Nova Tarefa
             </button>
         </li>

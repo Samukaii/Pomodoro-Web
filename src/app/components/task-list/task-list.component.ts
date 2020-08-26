@@ -1,49 +1,50 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Output, EventEmitter } from "@angular/core";
 
 @Component({
     selector: "app-task-list",
     templateUrl: "./task-list.component.html",
-    styleUrls: ["./task-list.component.css"]
+    styleUrls: ["./task-list.component.css"],
 })
 export class TaskListComponent implements OnInit {
     activeTask: HTMLLIElement;
     pomodorosToFinish: number = 0;
-    tasks: Array<{ nameTask: string, numberPomodoros: number }> = [];
+    tasks: Array<{ nameTask: string; numberPomodoros: number }> = [];
+    disableAllSelectTasks = new Event("desselectAllTasks");
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit(): void { }
+    ngOnInit(): void {}
 
     delete = (event: any, index: number) => {
         event.preventDefault();
         this.tasks.splice(index, 1);
     };
 
-    add = (nameTaskRef: HTMLInputElement, numberPomodorosRef: HTMLParagraphElement) => {
+    add = (
+        nameTaskRef: HTMLInputElement,
+        numberPomodorosRef: HTMLParagraphElement
+    ) => {
         const newTask = {
             nameTask: "",
-            numberPomodoros: 0
-        }
+            numberPomodoros: 0,
+        };
         newTask.nameTask = nameTaskRef.value;
         newTask.numberPomodoros = parseInt(numberPomodorosRef.innerHTML);
 
         if (newTask.nameTask.length < 1) return;
         this.tasks.push(newTask);
-
     };
 
     addOrSubtractPomodoro = (event: any, amount: number) => {
         event.preventDefault();
-        if (this.pomodorosToFinish <= 0)
-            amount < 0 ? amount = 0 : 1
+        if (this.pomodorosToFinish <= 0) amount < 0 ? (amount = 0) : 1;
 
         this.pomodorosToFinish += amount;
-    }
+    };
 
     check = (event: any, taskname: HTMLInputElement) => {
         const target: HTMLElement = event.target;
         let checkIcon: any;
-
 
         if (target.nodeName === "BUTTON") {
             checkIcon = target.firstElementChild;
@@ -74,7 +75,19 @@ export class TaskListComponent implements OnInit {
     select = (task: HTMLLIElement) => {
         if (task.classList.contains("active")) return;
         this.activeTask = task;
-        task.classList.add("active")
-        console.log(task)
+        this.desSelectAll();
+        task.classList.add("active");
+        console.log(task);
+    };
+
+    observeDesselectEvent = (element: HTMLLIElement) => {};
+
+    desSelectAll = () => {
+        document.dispatchEvent(this.disableAllSelectTasks);
+    };
+
+    desSelectTask = (task: HTMLLIElement) => {
+        if (!task.classList.contains("active")) return;
+        task.classList.remove("active");
     };
 }

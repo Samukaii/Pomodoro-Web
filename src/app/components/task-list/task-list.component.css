@@ -182,3 +182,12 @@ button.check-task {
     outline: none;
     cursor: pointer;
 }
+div#pomodoros-to-task {
+    display: flex;
+    padding: 10px;
+}
+div#pomodoros-to-task p {
+    margin: 0;
+    margin-right: 3px;
+    padding-top: 3px;
+}
