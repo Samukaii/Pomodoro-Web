@@ -16,7 +16,6 @@ import { TaskListComponent } from "./components/task-list/task-list.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { ModalComponent } from "./components/modal/modal.component";
 import { PomodoroIndicatorComponent } from './components/pomodoro-indicator/pomodoro-indicator.component';
-import { TaskItemComponent } from './components/task-item/task-item.component';
 
 @NgModule({
     declarations: [
@@ -30,7 +29,6 @@ import { TaskItemComponent } from './components/task-item/task-item.component';
         SettingsComponent,
         ModalComponent,
         PomodoroIndicatorComponent,
-        TaskItemComponent,
     ],
     imports: [
         BrowserModule,
