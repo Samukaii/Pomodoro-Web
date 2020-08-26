@@ -13,7 +13,11 @@ export class TaskListComponent implements OnInit {
 
     constructor() {}
 
-    ngOnInit(): void {}
+    ngOnInit(): void {
+        if (localStorage.getItem("tasks")) {
+            this.tasks = JSON.parse(localStorage.getItem("tasks"));
+        }
+    }
 
     delete = (event: any, index: number) => {
         event.preventDefault();
@@ -33,6 +37,8 @@ export class TaskListComponent implements OnInit {
 
         if (newTask.nameTask.length < 1) return;
         this.tasks.push(newTask);
+
+        localStorage.setItem("tasks", JSON.stringify(this.tasks));
     };
 
     addOrSubtractPomodoro = (event: any, amount: number) => {
