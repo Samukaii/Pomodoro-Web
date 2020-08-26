@@ -1,0 +1,20 @@
+<button class="check-task" (click)="check($event, taskInput)">
+    <mat-icon class="check-icon" checked="false"
+        >check_box_outline_blank</mat-icon
+    >
+</button>
+<button class="select-task" (click)="select(taskRef)">
+    <input type="text" value="{{ taskObject.nameTask }}" readonly #taskInput />
+</button>
+<div *ngIf="taskObject.numberPomodoros !== 0" id="pomodoros-to-task">
+    <p>
+        {{ taskObject.numberPomodoros }}
+    </p>
+    <mat-icon>timer</mat-icon>
+</div>
+<button class="edit-task" (click)="edit(taskInput, taskIndex)">
+    <mat-icon>create</mat-icon>
+</button>
+<button class="delete-task" (click)="delete($event, taskIndex)">
+    <mat-icon>delete</mat-icon>
+</button>

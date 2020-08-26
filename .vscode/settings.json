@@ -14,5 +14,6 @@
     },
     "prettier.tabWidth": 4,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Omni"
+    "workbench.colorTheme": "Omni",
+    "editor.mouseWheelZoom": true
 }

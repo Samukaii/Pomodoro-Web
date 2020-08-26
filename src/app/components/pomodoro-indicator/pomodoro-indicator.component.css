@@ -1,0 +1,34 @@
+div.vertical-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+div.horizontal-flex {
+    display: flex;
+}
+div#pomodoro-indicator-base {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+#pomodoro-indicator {
+    color: #e53;
+}
+#short-break-indicator {
+    color: #39a;
+}
+#long-break-indicator {
+    color: #33a;
+}
+#indicator-arrow {
+    color: white;
+}
+
+#indicator-arrow,
+#short-break-indicator,
+#long-break-indicator,
+#pomodoro-indicator {
+    font-size: 24pt;
+    margin-bottom: 10px;
+}

@@ -1,15 +1,19 @@
 <app-modal>
-    <app-settings>
-
-    </app-settings>
+    <app-settings> </app-settings>
 </app-modal>
 <app-nav></app-nav>
 
 <div class="body">
     <div class="clocker">
         <app-tabs (setTime)="receiveActualTimer($event, clock)"> </app-tabs>
-        <app-clock [actual-timer]="actualTimer" #clock> </app-clock>
-        <app-button-play (is-timing)="receiveIsTiming($event)" (is-timing)="clock.playOrPause($event)">
+        <div class="horizontal-flex">
+            <app-clock [actual-timer]="actualTimer" #clock> </app-clock>
+            <app-pomodoro-indicator></app-pomodoro-indicator>
+        </div>
+        <app-button-play
+            (is-timing)="receiveIsTiming($event)"
+            (is-timing)="clock.playOrPause($event)"
+        >
         </app-button-play>
         <app-task-list> </app-task-list>
     </div>

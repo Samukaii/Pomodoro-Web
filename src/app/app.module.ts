@@ -11,10 +11,12 @@ import { ClockComponent } from "./components/clock/clock.component";
 import { HomeComponent } from "./layouts/home/home.component";
 import { TabsComponent } from "./components/tabs/tabs.component";
 import { ButtonPlayComponent } from "./components/button-play/button-play.component";
-import { MatIconModule, MatIcon } from "@angular/material/icon";
+import { MatIconModule } from "@angular/material/icon";
 import { TaskListComponent } from "./components/task-list/task-list.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { ModalComponent } from "./components/modal/modal.component";
+import { PomodoroIndicatorComponent } from './components/pomodoro-indicator/pomodoro-indicator.component';
+import { TaskItemComponent } from './components/task-item/task-item.component';
 
 @NgModule({
     declarations: [
@@ -27,6 +29,8 @@ import { ModalComponent } from "./components/modal/modal.component";
         TaskListComponent,
         SettingsComponent,
         ModalComponent,
+        PomodoroIndicatorComponent,
+        TaskItemComponent,
     ],
     imports: [
         BrowserModule,

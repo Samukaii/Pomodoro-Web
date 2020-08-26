@@ -5,6 +5,7 @@ app-nav {
 app-clock {
     display: flex;
     justify-content: center;
+    justify-self: center;
 }
 
 app-tabs {
@@ -23,4 +24,8 @@ app-tabs {
     justify-content: center;
     width: 50%;
     border-radius: 10px;
+}
+
+div.horizontal-flex {
+    display: flex;
 }
