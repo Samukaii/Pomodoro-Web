@@ -1,17 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
-
-type PomodoroTypes = "pomodoro" | "short-break" | "long-break";
-type PomodoroTimes = 25 | 5 | 15;
-type PomodoroEventType = {
-    target: {
-        id: PomodoroTypes;
-    };
-};
+import { PomodoroEventType, PomodoroTimes, PomodoroTypes } from "types";
 
 @Component({
     selector: "app-tabs",
     templateUrl: "./tabs.component.html",
-    styleUrls: ["./tabs.component.css"]
+    styleUrls: ["./tabs.component.css"],
 })
 export class TabsComponent implements OnInit {
     timeActive: PomodoroTimes = 25;
@@ -28,7 +21,7 @@ export class TabsComponent implements OnInit {
     }
 
     activateTab = () => {
-        this.allTabs.forEach(tab => {
+        this.allTabs.forEach((tab) => {
             if (tab.id === this.typeActiveID) tab.classList.add("active");
             else if (tab.classList.contains("active"))
                 tab.classList.remove("active");
@@ -51,7 +44,10 @@ export class TabsComponent implements OnInit {
                 this.typeActiveID = "long-break";
                 break;
         }
-        this.setTime.emit(this.timeActive);
+        this.setTime.emit({
+            timeActive: this.timeActive,
+            typeActive: this.typeActiveID,
+        });
         console.log("Enviando Tempo Atual...", this.timeActive);
         this.activateTab();
     };

@@ -191,3 +191,7 @@ div#pomodoros-to-task p {
     margin-right: 3px;
     padding-top: 3px;
 }
+
+.checked {
+    text-decoration: line-through;
+}

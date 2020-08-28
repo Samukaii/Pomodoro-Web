@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
+import { PomodoroEventType, PomodoroTimes, PomodoroTypes } from "types";
+import { TabsComponent } from "../../components/tabs/tabs.component";
 
 @Component({
     selector: "app-home",
     templateUrl: "./home.component.html",
-    styleUrls: ["./home.component.css"]
+    styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
     actualTimer: number = 25;
@@ -13,9 +15,13 @@ export class HomeComponent implements OnInit {
 
     ngOnInit(): void {}
 
-    receiveActualTimer = (timer: number, clock: any) => {
-        this.actualTimer = timer;
-        clock.restartTimerTo(this.actualTimer);
+    receiveActualTimer = (eventTimer, clock: any) => {
+        this.actualTimer = eventTimer.timeActive;
+        clock.setActualTimer(eventTimer);
+    };
+
+    switchTab = (timer: PomodoroEventType, tabs: TabsComponent) => {
+        tabs.switchTab(timer);
     };
 
     receiveIsTiming = (isTiming: boolean) => {

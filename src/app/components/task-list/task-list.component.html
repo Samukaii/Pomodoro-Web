@@ -1,14 +1,14 @@
 <div class="base">
     <ul id="tasks-base">
         <li
-            *ngFor="let task of tasks; index as i; first as isFirst"
+            *ngFor="let task of taskList.getAll(); index as i; first as isFirst"
             #taskLine
             [ngClass]="{ active: task.active === true }"
         >
-            <button class="check-task" (click)="check($event, taskInput)">
-                <mat-icon class="check-icon" checked="false"
-                    >check_box_outline_blank</mat-icon
-                >
+            <button class="check-task" (click)="check(i)">
+                <mat-icon class="check-icon">{{
+                    isChecked(i) ? "check_box" : "check_box_outline_blank"
+                }}</mat-icon>
             </button>
             <button class="select-task" (click)="select(i)">
                 <input
@@ -16,6 +16,7 @@
                     value="{{ task.nameTask }}"
                     readonly
                     #taskInput
+                    [ngClass]="{ checked: taskList.isChecked(i) }"
                 />
             </button>
             <div *ngIf="task.numberPomodoros !== 0" id="pomodoros-to-task">

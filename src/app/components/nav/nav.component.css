@@ -6,69 +6,59 @@ mat-toolbar {
     width: 100%;
 }
 
-#settings-area{
+#settings-area {
     display: flex;
     justify-content: flex-end;
     flex-basis: 100%;
     width: 100%;
 }
 
-#settings-area #settings-button{
+#settings-area #settings-button {
     background-color: transparent;
-    border:none;
+    border: none;
     outline: none;
     color: white;
     cursor: pointer;
 }
 
-#settings-area #account-button{
-background-color: transparent;
-border:none;
-outline: none;
-color: white;
-cursor: pointer;
+#account-button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    cursor: pointer;
+    margin-right: 20px;
 }
 
-.account{
+.account {
     position: absolute;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 }
-.dropdown{
+.dropdown {
     display: flex;
     align-content: flex-start;
     margin-right: 25px;
 }
 
-.dropdown ul{
+.dropdown ul {
     background-color: #eee;
     margin: 0;
     padding: 5px;
     border-radius: 2%;
-    position: static;
-    transform: scaleY(0.1)translateY(10px);
+    position: absolute;
+    flex-direction: column;
+    right: 10px;
 
-    transition: transform 0.4s ease;
+    transition: display 0.4s ease;
     display: none;
-    
-    
 }
-.dropdown ul:hover{
-    background-color: #eee;
-    margin: 0;
-    padding: 5px;
-    border-radius: 2%;
-    position: static;
-    transform: scaleY(1);
-
-    
-}
-.dropdown ul li{
+.dropdown ul li {
     list-style: none;
     color: black;
     font-size: 12pt;
 }
 
-#left{
+#left {
     width: 100%;
 }

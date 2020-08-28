@@ -10,7 +10,13 @@
         "**/main.ts": true,
         "**/favicon.ico": true,
         "**/app-routing.module.ts": true,
-        ".gitignore": true
+        ".gitignore": true,
+        "package-lock.json": true,
+        "yarn.lock": true,
+        "tsconfig*": true,
+        ".gitpod*": true,
+        "angular.json": true,
+        "node_modules": true
     },
     "prettier.tabWidth": 4,
     "workbench.iconTheme": "material-icon-theme",

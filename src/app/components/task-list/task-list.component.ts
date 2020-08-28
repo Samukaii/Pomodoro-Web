@@ -1,4 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { LocalStorageOperations } from "helpers/storage-operations";
+import { Task } from "types";
 
 @Component({
     selector: "app-task-list",
@@ -6,45 +8,40 @@ import { Component, OnInit, Output, EventEmitter } from "@angular/core";
     styleUrls: ["./task-list.component.css"],
 })
 export class TaskListComponent implements OnInit {
-    activeTask: { nameTask: string; numberPomodoros: number; active: boolean };
     pomodorosToFinish: number = 0;
-    tasks: Array<{
-        nameTask: string;
-        numberPomodoros: number;
-        active: boolean;
-    }> = [];
-    taskRefs: Array<any> = [];
+    taskList = new TaskList();
     disableAllSelectTasks = new Event("desselectAllTasks");
+    storageOperations = new LocalStorageOperations();
 
     constructor() {}
 
     ngOnInit(): void {
-        if (localStorage.getItem("tasks")) {
-            this.tasks = JSON.parse(localStorage.getItem("tasks"));
-        }
+        this.updateTasksOfLocalStorage();
     }
 
-    delete = (event: any, index: number) => {
-        event.preventDefault();
-        this.tasks.splice(index, 1);
+    isChecked = this.taskList.isChecked;
+    updateTasksOfLocalStorage = () => {
+        this.taskList.update(this.storageOperations.getTasks());
+        this.taskList.selectFirstTask();
     };
 
+    delete = (event: any, index: number) => {
+        this.taskList.delete(index);
+        this.storageOperations.deleteATask(index);
+    };
     add = (
         nameTaskRef: HTMLInputElement,
         numberPomodorosRef: HTMLParagraphElement
     ) => {
-        const newTask = {
-            nameTask: "",
-            numberPomodoros: 0,
-            active: false,
+        const newTask: Task = {
+            nameTask: nameTaskRef.value,
+            numberPomodoros: parseInt(numberPomodorosRef.innerHTML),
+            active: this.taskList.getSelected() ? false : true,
+            checked: true,
         };
-        newTask.nameTask = nameTaskRef.value;
-        newTask.numberPomodoros = parseInt(numberPomodorosRef.innerHTML);
 
-        if (newTask.nameTask.length < 1) return;
-        this.tasks.push(newTask);
-
-        localStorage.setItem("tasks", JSON.stringify(this.tasks));
+        this.taskList.add(newTask);
+        this.storageOperations.saveTasks(this.taskList.getAll());
     };
 
     addOrSubtractPomodoro = (event: any, amount: number) => {
@@ -54,44 +51,66 @@ export class TaskListComponent implements OnInit {
         this.pomodorosToFinish += amount;
     };
 
-    check = (event: any, taskname: HTMLInputElement) => {
-        const target: HTMLElement = event.target;
-        let checkIcon: any;
-
-        if (target.nodeName === "BUTTON") {
-            checkIcon = target.firstElementChild;
-        } else {
-            checkIcon = target;
-        }
-
-        let isChecked = checkIcon.getAttribute("checked");
-
-        if (isChecked === "true") {
-            checkIcon.innerText = "check_box_outline_blank";
-            taskname.style.textDecoration = "none";
-            checkIcon.setAttribute("checked", "false");
-        } else if (isChecked === "false") {
-            checkIcon.innerText = "check_box";
-            checkIcon.setAttribute("checked", "true");
-            taskname.style.textDecoration = "line-through";
-        }
-    };
+    check = this.taskList.checkOne;
 
     edit = (taskInput: HTMLInputElement, taskIndex: number) => {
-        if (!taskInput.readOnly) {
-            this.tasks[taskIndex].nameTask = taskInput.value;
-        }
-        taskInput.readOnly = !taskInput.readOnly;
+        //if (!taskInput.readOnly) {
+        //    this.tasks[taskIndex].nameTask = taskInput.value;
+        //}
+        //taskInput.readOnly = !taskInput.readOnly;
+    };
+
+    select = this.taskList.select;
+}
+
+class TaskList {
+    active: Task;
+    list: Array<Task>;
+
+    getOne = (index: number) => this.list[index];
+    getSelected = () => this.active;
+    getAll = () => this.list;
+
+    checkOne = (index: number) => (this.list[index].checked = true);
+    isChecked = (index: number) => this.list[index].checked;
+
+    update = (tasks: Array<Task>) => {
+        this.list = tasks;
+    };
+
+    add = (task: Task) => {
+        if (!this.validate(task)) return false;
+        this.list.push(task);
+        const index = this.list.indexOf(task);
+
+        if (this.getSelected()) return;
+
+        this.select(index);
+    };
+
+    validate = (task: Task) => {
+        return task.nameTask.length >= 0;
+    };
+
+    edit = () => {};
+    delete = (index: number) => {
+        this.list.splice(index, 1);
+        delete this.active;
     };
 
     select = (index: number) => {
-        this.desSelectAll();
-        this.tasks[index].active = true;
-        this.activeTask = this.tasks[index];
+        this.desselectAll();
+
+        this.list[index].active = true;
+        this.active = this.list[index];
     };
 
-    desSelectAll = () => {
-        this.tasks.map((task) => {
+    selectFirstTask = () => {
+        this.select(0);
+    };
+
+    desselectAll = () => {
+        this.list.map((task) => {
             task.active = false;
         });
     };
